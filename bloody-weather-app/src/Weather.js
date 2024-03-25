@@ -3,6 +3,7 @@ import axios from "axios";
 import WeatherInfo from "./WeatherInfo";
 
 
+
 export default function Weather(props){
 
     const [weatherData, setWeatherData] = useState({ready :false});
@@ -14,10 +15,10 @@ export default function Weather(props){
     coordinates : response.data.coord,
     temperature : response.data.main.temp,
     humidity : response.data.main.humidity,
-    // date : new Date(response.data.dt * 1000),
+    date : new Date(response.data.dt * 1000),
     description : response.data.weather[0].description,
-    // icon : response.weather[0].icon,
-    wind : response.data.wind.speed,
+    icon : response.data.weather[0].icon,
+    wind : Math.round(response.data.wind.speed),
     city : response.data.name,
 });
     }
@@ -53,6 +54,8 @@ return (
  else {
     search();
     return "Loading...";
+    
   }
+  
 
 }
